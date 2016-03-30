@@ -1,0 +1,19 @@
+---
+- hosts: docker
+  sudo: true
+
+  tasks:
+  - name: copy docker.repo file to remote host
+    copy: src=./files/docker.repo dest=/etc/yum.repos.d/docker.repo
+
+  - name: upgrade all packages
+    yum: name=* state=latest
+
+  - name: install Docker from the docker repo
+    yum: name=docker-engine enablerepo=docker state=present
+
+  - name: to activate docker service
+    service: name=docker enabled=yes
+
+  - name: to activate docker service
+    service: name=docker state=started
