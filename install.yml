@@ -10,10 +10,10 @@
     yum: name=* state=latest
 
   - name: install Docker from the docker repo
-    yum: name=docker-engine enablerepo=docker state=present
+    yum: name=docker-engine enablerepo=dockerrepo state=present
 
   - name: to activate docker service
     service: name=docker enabled=yes
 
-  - name: to activate docker service
+  - name: to start docker service
     service: name=docker state=started
